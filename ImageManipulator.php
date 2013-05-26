@@ -14,6 +14,9 @@
  */
 class ImageManipulator
 {
+    const MAX_IMAGE_WIDTH  = 2048;
+    const MAX_IMAGE_HEIGHT = 2048;
+
     /**
      * @var Imagick
      */
@@ -113,6 +116,10 @@ class ImageManipulator
      */
     public function resizeTo($width, $height)
     {
+        if ( ! $this->validateDimension($width, $height)) {
+            return false;
+        }
+
         try {
             $this->imagick->thumbnailImage($width, $height,  true);
         } catch (Exception $e) {
@@ -146,6 +153,29 @@ class ImageManipulator
         }
 
         return $image;
+    }
+
+    /**
+     * Validate if given width and height are not exceed allowed maxim values
+     *
+     * @param  integer $width
+     * @param  integer $height
+     *
+     * @return boolean
+     */
+    private function validateDimension($width, $height) {
+        if ($width > self::MAX_IMAGE_WIDTH || $height > self::MAX_IMAGE_HEIGHT) {
+            $this->errorMessage = sprintf('Maxim allowed width is "%s" and maximum allowed height is "%s". Yours are "%s" and "%s"',
+                self::MAX_IMAGE_WIDTH,
+                self::MAX_IMAGE_HEIGHT,
+                $width,
+                $height
+            );
+
+            return false;
+        }
+
+        return true;
     }
 
     /**
