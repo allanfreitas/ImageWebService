@@ -13,7 +13,7 @@ if ( ! function_exists('curl_init')){
 }
 
 // Define a file name here
-$fullFilePath = 'test.jpg';
+$fullFilePath = 'test.png';
 
 // Define a web service url
 $uploadUrl    = 'http://localhost/service.php';
@@ -22,7 +22,7 @@ $uploadUrl    = 'http://localhost/service.php';
 $postParameterArray = array(
     'action'   => 'thumbnail',
     'fileName' => "$fullFilePath",
-    'format'   => 'png',
+    'format'   => 'jpeg',
     'width'    => '300',
     'height'   => '500'
 );

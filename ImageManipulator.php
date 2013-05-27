@@ -156,6 +156,19 @@ class ImageManipulator
     }
 
     /**
+     * Clear and destroy Imagick instance
+     */
+    public function clear()
+    {
+        try {
+            $this->imagick->clear();
+            $this->imagick->destroy();
+        } catch (Exception $e) {
+
+        }
+    }
+
+    /**
      * Validate if given width and height are not exceed allowed maxim values
      *
      * @param  integer $width

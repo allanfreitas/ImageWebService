@@ -346,6 +346,8 @@ class WebService
             return false;
         }
 
+        $imageManipulator->clear();
+
         $this->responseBody = $image;
 
         return true;
